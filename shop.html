@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop - Healthy Water & Air</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/cart.js" defer></script>
+  <script src="assets/catalog.js" defer></script>
+  <script src="assets/shop.js" defer></script>
+  <script src="assets/includes.js" defer></script>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="hero hero-slim">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker">Shop</div>
+        <h1>Browse products anytime</h1>
+        <p class="lead">Prefer to skip the guide? Add items directly to your cart. If an item says “Quote”, we’ll confirm sizing and installation details before final pricing.</p>
+      </div>
+      <div class="hero-illus-wrap">
+        <img class="hero-illus" src="assets/img/illus-shop.png" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="shop-toolbar">
+        <div class="seg">
+          <button class="btn btn-sm btn-secondary" data-filter="All">All</button>
+          <button class="btn btn-sm btn-ghost" data-filter="Water">Water</button>
+          <button class="btn btn-sm btn-ghost" data-filter="Air">Air</button>
+          <button class="btn btn-sm btn-ghost" data-filter="HVAC">HVAC</button>
+        </div>
+        <div class="search">
+          <input id="shop-search" class="input" type="search" placeholder="Search products..." autocomplete="off" />
+        </div>
+        <div class="search">
+          <select id="shop-subcat" class="input" aria-label="Filter by subcategory">
+            <option value="All">All subcategories</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="shop-grid" class="grid grid-3"></div>
+
+      <div class="card pad" style="margin-top:18px;">
+        <div class="h3">Not sure what you need?</div>
+        <p class="muted" style="margin:6px 0 0;">Use the Home Guide to build a plan step-by-step with explanations, videos, and a recommended bundle.</p>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn-secondary" href="home-guide.html">Start Home Guide</a>
+          <a class="btn btn-ghost" href="schedule.html">Schedule help</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+  (function(){
+    const products = window.HWA_PRODUCTS || {};
+    const grid = document.getElementById('shop-grid');
+    const search = document.getElementById('shop-search');
+    const subcatSel = document.getElementById('shop-subcat');
+
+    const money = (n)=>{
+      if (n == null) return '';
+      if (typeof n === 'object'){
+        const mn = Number(n.min||0);
+        const mx = Number(n.max||0);
+        if (!mn && !mx) return 'Quote / Included';
+        if (mn && mx && mn !== mx) return `${money(mn)} - ${money(mx)}`;
+        return money(mn||mx);
+      }
+      if (n === 0) return 'Quote / Included';
+      const num = Number(n)||0;
+      try{ return num.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:0}); }
+      catch(e){ return '$' + Math.round(num); }
+    };
+
+    const norm = (s)=>String(s||'').toLowerCase().trim();
+    let active = 'All';
+    let subcat = 'All';
+    let q = '';
+
+    const defaultThumb = (cat)=>{
+      const c = norm(cat);
+      if (c.includes('water')) return 'assets/img/thumb-water.png';
+      if (c.includes('air')) return 'assets/img/thumb-air.png';
+      if (c.includes('hvac')) return 'assets/img/thumb-hvac.png';
+      return 'assets/img/thumb-generic.png';
+    };
+
+    const buildSubcats = ()=>{
+      if (!subcatSel) return;
+      const vals = new Set();
+      Object.keys(products).forEach(id=>{
+        const p = products[id];
+        if (!p) return;
+        const cat = (p.category||'');
+        if (active !== 'All' && cat !== active) return;
+        const sc = p.subcategory || 'Other';
+        vals.add(sc);
+      });
+      const arr = Array.from(vals).sort((a,b)=>a.localeCompare(b));
+      const cur = subcat;
+      subcatSel.innerHTML = '<option value="All">All subcategories</option>' + arr.map(v=>`<option value="${v}">${v}</option>`).join('');
+      // restore selection if still exists
+      const opt = Array.from(subcatSel.options).find(o=>o.value===cur);
+      if (opt) subcatSel.value = cur;
+      else { subcat = 'All'; subcatSel.value = 'All'; }
+    };
+
+    const render = ()=>{
+      const items = Object.entries(products)
+        .map(([id,p])=>({id,...p}))
+        .filter(p=> active==='All' ? true : (p.category===active))
+        .filter(p=>{
+          if (!q) return true;
+          const hay = norm(p.name)+' '+norm(p.short)+' '+norm(p.category);
+          return hay.includes(q);
+        });
+
+      if (!items.length){
+        grid.innerHTML = '<div class="card pad"><div class="h3">No matches</div><div class="muted">Try a different search.</div></div>';
+        return;
+      }
+
+      grid.innerHTML = items.map(p=>{
+        const img = (p.image || p.imageUrl || '').trim() || defaultThumb(p.category);
+        const price = (p.price === 0) ? 'Quote / Included' : money(p.price);
+        const badge = (p.price === 0) ? '<span class="badge">Quote</span>' : '';
+        const short = p.short || p.desc || p.description || '';
+        return `
+          <div class="card product-card">
+            <div class="product-media">
+              <img src="${img}" alt="" loading="lazy" />
+            </div>
+            <div class="product-body">
+              <div class="row">
+                <div class="h4" title="${p.name||''}">${p.name||''}</div>
+                <div class="price">${price}</div>
+              </div>
+              <div class="tiny" style="margin-top:6px;">${badge} <span class="muted">${p.category||''}</span></div>
+              <p class="muted" style="margin:10px 0 0; min-height:44px;">${short}</p>
+              <div style="margin-top:12px; display:flex; gap:10px; align-items:center; justify-content:space-between;">
+                <button class="btn btn-sm btn-secondary" data-add="${p.id}">Add to cart</button>
+                <a class="btn btn-sm btn-ghost" href="cart.html">View cart</a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('[data-add]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const id = btn.getAttribute('data-add');
+          window.HWACart && window.HWACart.add(id, 1);
+          btn.textContent = 'Added';
+          setTimeout(()=>btn.textContent='Add to cart', 900);
+        });
+      });
+    };
+
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        active = btn.getAttribute('data-filter');
+      subcat = 'All';
+      if (subcatSel) subcatSel.value = 'All';
+      buildSubcats();
+        document.querySelectorAll('[data-filter]').forEach(b=>{
+          b.classList.remove('btn-secondary');
+          b.classList.add('btn-ghost');
+        });
+        btn.classList.remove('btn-ghost');
+        btn.classList.add('btn-secondary');
+        render();
+      });
+    });
+
+    search.addEventListener('input', ()=>{
+      q = norm(search.value);
+      render();
+    });
+
+    buildSubcats();
+    render();
+  })();
+  </script>
+</body>
+</html>

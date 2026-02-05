@@ -1,0 +1,38 @@
+﻿<svg width="1200" height="780" viewBox="0 0 1200 780" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2f6ff"/>
+      <stop offset="1" stop-color="#eef7fb"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1dbec8"/>
+      <stop offset="1" stop-color="#2a6fd6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="780" rx="28" fill="url(#bg2)"/>
+  <rect x="36" y="36" width="1128" height="708" rx="24" stroke="#0d0f12" stroke-opacity="0.08"/>
+
+  <rect x="70" y="78" width="560" height="240" rx="20" fill="#ffffff" stroke="#0d0f12" stroke-opacity="0.12"/>
+  <rect x="100" y="112" width="180" height="16" rx="8" fill="#0d0f12" fill-opacity="0.12"/>
+  <rect x="100" y="142" width="420" height="12" rx="6" fill="#0d0f12" fill-opacity="0.08"/>
+  <rect x="100" y="166" width="380" height="12" rx="6" fill="#0d0f12" fill-opacity="0.08"/>
+  <rect x="100" y="200" width="260" height="32" rx="10" fill="url(#accent2)"/>
+
+  <rect x="660" y="78" width="470" height="240" rx="20" fill="#ffffff" stroke="#0d0f12" stroke-opacity="0.12"/>
+  <rect x="690" y="112" width="140" height="16" rx="8" fill="#0d0f12" fill-opacity="0.12"/>
+  <rect x="690" y="142" width="300" height="12" rx="6" fill="#0d0f12" fill-opacity="0.08"/>
+  <rect x="690" y="166" width="260" height="12" rx="6" fill="#0d0f12" fill-opacity="0.08"/>
+
+  <rect x="70" y="350" width="1060" height="190" rx="20" fill="#ffffff" stroke="#0d0f12" stroke-opacity="0.12"/>
+  <rect x="100" y="384" width="220" height="16" rx="8" fill="#0d0f12" fill-opacity="0.12"/>
+  <rect x="100" y="414" width="520" height="12" rx="6" fill="#0d0f12" fill-opacity="0.08"/>
+  <rect x="100" y="438" width="470" height="12" rx="6" fill="#0d0f12" fill-opacity="0.08"/>
+
+  <rect x="70" y="568" width="520" height="160" rx="18" fill="#ffffff" stroke="#0d0f12" stroke-opacity="0.12"/>
+  <rect x="100" y="598" width="180" height="16" rx="8" fill="#0d0f12" fill-opacity="0.12"/>
+  <rect x="100" y="628" width="300" height="12" rx="6" fill="#0d0f12" fill-opacity="0.08"/>
+
+  <rect x="630" y="568" width="500" height="160" rx="18" fill="#ffffff" stroke="#0d0f12" stroke-opacity="0.12"/>
+  <rect x="660" y="598" width="220" height="16" rx="8" fill="#0d0f12" fill-opacity="0.12"/>
+  <rect x="660" y="628" width="300" height="12" rx="6" fill="#0d0f12" fill-opacity="0.08"/>
+</svg>

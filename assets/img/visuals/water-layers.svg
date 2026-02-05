@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-label="Water treatment layers">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1733"/>
+      <stop offset="1" stop-color="#071225"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#47c7ff"/>
+      <stop offset="1" stop-color="#66e3c4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="560" rx="26" fill="url(#bg)"/>
+  <text x="70" y="95" font-size="44" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#eaf1ff" font-weight="900">Water solutions are layered</text>
+  <text x="70" y="132" font-size="20" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#b8c6dd">Pick the smallest stack that solves your symptoms - then verify with a test.</text>
+
+  <g>
+    <rect x="70" y="190" width="1060" height="300" rx="24" fill="#0c1a30" stroke="#2b3d5b"/>
+    <rect x="110" y="235" width="240" height="210" rx="20" fill="#0e2440" stroke="#2b3d5b"/>
+    <rect x="380" y="235" width="240" height="210" rx="20" fill="#0e2440" stroke="#2b3d5b"/>
+    <rect x="650" y="235" width="240" height="210" rx="20" fill="#0e2440" stroke="#2b3d5b"/>
+    <rect x="920" y="235" width="170" height="210" rx="20" fill="#0e2440" stroke="#2b3d5b"/>
+  </g>
+
+  <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#eaf1ff">
+    <text x="140" y="275" font-size="20" font-weight="900">Sediment</text>
+    <text x="140" y="305" font-size="14" fill="#c7d4ea">Grit, particles, cloudy water</text>
+    <text x="140" y="330" font-size="14" fill="#a9b9d3">Protects valves & fixtures</text>
+
+    <text x="410" y="275" font-size="20" font-weight="900">Carbon</text>
+    <text x="410" y="305" font-size="14" fill="#c7d4ea">Taste, odor, chlorine</text>
+    <text x="410" y="330" font-size="14" fill="#a9b9d3">Whole-home experience</text>
+
+    <text x="680" y="275" font-size="20" font-weight="900">Softener</text>
+    <text x="680" y="305" font-size="14" fill="#c7d4ea">Scale, spots, dryness</text>
+    <text x="680" y="330" font-size="14" fill="#a9b9d3">Protect plumbing & appliances</text>
+
+    <text x="948" y="275" font-size="20" font-weight="900">RO</text>
+    <text x="948" y="305" font-size="14" fill="#c7d4ea">Drinking water</text>
+    <text x="948" y="330" font-size="14" fill="#a9b9d3">Taste + dissolved reduction</text>
+  </g>
+
+  <rect x="70" y="510" width="1060" height="10" rx="999" fill="url(#accent)" opacity="0.85"/>
+</svg>

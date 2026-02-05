@@ -1,0 +1,237 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bundle - Healthy Water & Air</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/cart.js"></script>
+  <script src="assets/catalog.js"></script>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<section class="hero hero-slim">
+  <div class="container hero-grid">
+    <div>
+      <div class="kicker">Bundle</div>
+      <h1>Your bundled solution</h1>
+      <p class="lead">Review the items, remove anything you do not want, then proceed to checkout.</p>
+    </div>
+    <div class="hero-illus-wrap">
+      <img class="hero-illus" src="assets/img/illus-shop.png" alt="Bundle illustration" />
+    </div>
+  </div>
+</section>
+
+<section class="section-bg">
+  <div class="container">
+    <div class="card pad">
+      <span class="eyebrow">Bundle steps</span>
+      <div class="steps">
+        <a class="stepPill" href="#">Step 1 - Symptoms</a>
+        <a class="stepPill" href="#">Step 2 - Questions</a>
+        <a class="stepPill active" href="#">Step 3 - Bundle</a>
+      </div>
+    </div>
+
+    <div style="height:16px;"></div>
+
+    <div class="grid grid-2">
+      <div>
+        <div class="card pad">
+          <div style="font-weight:900;">Selected issues</div>
+          <div class="tiny" id="issuesList" style="margin-top:6px;">Loading...</div>
+        </div>
+
+        <div class="card pad" style="margin-top:12px;">
+          <div style="font-weight:900; margin-bottom:10px;">Recommended items</div>
+          <div id="bundleItems"></div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:14px; border-top:1px solid rgba(226,232,240,.9); padding-top:14px;">
+            <div>
+              <div style="font-weight:900;">Total</div>
+              <div class="tiny">Included / Quote items are confirmed during the free check.</div>
+            </div>
+            <div style="font-weight:900; font-size:22px;" id="bundleTotal">$0</div>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+            <button class="btn primary" id="proceedToCart" type="button">Proceed to Checkout</button>
+            <a class="btn secondary" href="cart.html">View Cart</a>
+            <a class="btn" href="start.html">Restart</a>
+          </div>
+
+          <div class="tiny" style="margin-top:10px;">Checkout saves your selected items to your cart on this device (static site).</div>
+        </div>
+      </div>
+
+      <div>
+        <figure class="imgblock" style="margin-bottom:12px;">
+          <img src="assets/img/thumb-generic.png" alt="Bundle preview">
+        </figure>
+        <div class="video">
+          <div class="frame">
+            <div style="text-align:center">
+              <div class="play"></div>
+              <div style="margin-top:14px; font-weight:900; color:var(--primary);">VIDEO PLACEHOLDER</div>
+              <div style="margin-top:6px; color:var(--muted); font-size:13px;">Bundle walkthrough (60-90 sec)</div>
+            </div>
+          </div>
+          <div class="label">
+            <span><strong>Bundle explanation</strong></span>
+            <span class="tiny">Why these items were selected</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const u = new URL(window.location.href);
+  const raw = (u.searchParams.get('issues') || '').trim();
+  const mode = (u.searchParams.get('mode') || '').trim();
+  const issues = raw ? raw.split(',').map(s=>s.trim()).filter(Boolean) : [];
+
+  // Clickable steps (preserve selected issues)
+  const step1 = new URL((mode==='air' ? 'air-step1.html' : 'water-step1.html'), window.location.origin);
+  const step2 = new URL((mode==='air' ? 'air-step2.html' : 'water-step2.html'), window.location.origin);
+  const step3 = new URL('bundle.html', window.location.origin);
+  if (issues.length){
+    step1.searchParams.set('issues', issues.join(','));
+    step2.searchParams.set('issues', issues.join(','));
+    step3.searchParams.set('issues', issues.join(','));
+  }
+  if (mode) step3.searchParams.set('mode', mode);
+
+  const pills = document.querySelectorAll('.steps a.stepPill');
+  if (pills.length >= 3){
+    pills[0].setAttribute('href', step1.pathname + step1.search);
+    pills[1].setAttribute('href', step2.pathname + step2.search);
+    pills[2].setAttribute('href', step3.pathname + step3.search);
+  }
+
+  const names = {
+    water_bad_taste: 'Water - bad taste or smell',
+    water_hard: 'Water - hard water and scale',
+    water_skin: 'Water - dry skin and hair',
+    water_stains: 'Water - staining/rust concerns',
+    water_contaminants: 'Water - concern about contaminants',
+    air_dust: 'Air - dust builds up fast',
+    air_allergies: 'Air - allergies or sneezing indoors',
+    air_dry: 'Air - dry air and static',
+    air_odors: 'Air - odors or smoke',
+    air_pets: 'Air - pet dander',
+  };
+  const list = document.getElementById('issuesList');
+  list.textContent = issues.length ? issues.map(i=>names[i]||i).join(' | ') : 'No issues selected.';
+
+  const bundles = window.HWA_BUNDLES || {};
+  const products = window.HWA_PRODUCTS || {};
+
+  // Combine + dedupe items across issue bundles
+  const selectedIssues = issues.filter(i => bundles[i]);
+  const itemMap = new Map(); // pid -> {productId, qty, sources[], checked}
+  selectedIssues.forEach(issue => {
+    const b = bundles[issue];
+    (b.items||[]).forEach(pid => {
+      if (!itemMap.has(pid)) itemMap.set(pid, {productId: pid, qty: 1, sources: [b.title], checked: true});
+      else {
+        const it = itemMap.get(pid);
+        if (!it.sources.includes(b.title)) it.sources.push(b.title);
+      }
+    });
+  });
+
+  const items = Array.from(itemMap.values());
+
+  function money(n){
+    if (typeof n !== 'number') return 'Included / Quote';
+    return n > 0 ? ('$' + n.toLocaleString(undefined,{maximumFractionDigits:0})) : 'Included / Quote';
+  }
+
+  function render(){
+    const root = document.getElementById('bundleItems');
+
+    if (!items.length){
+      root.innerHTML = '<div class="tiny">No items yet. Go back and choose symptoms.</div>';
+      document.getElementById('bundleTotal').textContent = '$0';
+      return;
+    }
+
+    root.innerHTML = items.map((it, idx) => {
+      const p = products[it.productId] || {name: it.productId, price: 0, desc: ''};
+      const price = (typeof p.price === 'number') ? p.price : 0;
+
+      return `
+        <div style="border-top:1px solid rgba(226,232,240,.9); padding:12px 0; display:flex; justify-content:space-between; gap:12px; align-items:flex-start;">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <input type="checkbox" ${it.checked ? 'checked' : ''} data-check="${idx}" style="width:18px; height:18px; margin-top:3px;" />
+            <div>
+              <div style="font-weight:900;">${p.name}</div>
+              <div class="tiny">${p.desc || ''}</div>
+              <div class="tiny" style="margin-top:6px;">From: ${it.sources.join(' | ')}</div>
+            </div>
+          </div>
+          <div style="text-align:right; min-width:140px;">
+            <div style="font-weight:900; color:var(--primary);">${money(price)}</div>
+            <button class="btn" type="button" data-remove="${idx}" style="margin-top:10px; height:38px;">Remove</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    root.querySelectorAll('[data-check]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const idx = parseInt(cb.getAttribute('data-check'));
+        items[idx].checked = cb.checked;
+        total();
+      });
+    });
+
+    root.querySelectorAll('[data-remove]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.getAttribute('data-remove'));
+        items.splice(idx, 1);
+        render();
+      });
+    });
+
+    total();
+  }
+
+  function total(){
+    let sum = 0;
+    items.forEach(it => {
+      if (!it.checked) return;
+      const p = products[it.productId];
+      const price = (p && typeof p.price === 'number') ? p.price : 0;
+      sum += price * (it.qty||1);
+    });
+    document.getElementById('bundleTotal').textContent = '$' + sum.toLocaleString(undefined,{maximumFractionDigits:0});
+  }
+
+  document.getElementById('proceedToCart').addEventListener('click', () => {
+    const selectedItems = items
+      .filter(it => it.checked)
+      .map(it => ({productId: it.productId, qty: it.qty||1, meta: {from: 'Self Check'}}));
+
+    if (window.HWA_CART && window.HWA_CART.save) window.HWA_CART.save(selectedItems);
+    else localStorage.setItem('hwa_cart_v1', JSON.stringify(selectedItems));
+
+    window.location.href = 'cart.html';
+  });
+
+  render();
+})();
+</script>
+<script src="assets/blogdata.js"></script>
+<script src="assets/cart.js"></script>
+  <script src="assets/app.js"></script>
+<div id="footer-placeholder"></div>
+
+  <script src="assets/includes.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Schedule - Healthy Water & Air</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/cart.js"></script>
+  <script src="assets/catalog.js"></script>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<section class="hero hero-slim">
+  <div class="container hero-grid">
+    <div>
+      <div class="kicker">Schedule</div>
+      <h1>Schedule your free water and air check</h1>
+      <p class="lead">Send the basics and we will confirm the next available time.</p>
+    </div>
+    <div class="hero-illus-wrap">
+      <img class="hero-illus" src="assets/img/illus-home.png" alt="Schedule a home check illustration" />
+    </div>
+  </div>
+</section>
+
+<section class="section-bg">
+  <div class="container grid grid-2">
+    <div class="card pad">
+      <span class="eyebrow">Schedule</span>
+      <h2>Schedule your free water and air check.</h2>
+      <p class="lead">Send the basics and we will confirm the next available time.</p>
+
+      <form class="form">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" type="text" required placeholder="Your name" class="input" />
+        </div>
+
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" type="tel" required placeholder="801-000-0000" class="input" />
+        </div>
+
+        <div>
+          <label for="zip">Zip Code</label>
+          <input id="zip" type="text" inputmode="numeric" pattern="\d{5}" required placeholder="e.g., 84043" class="input" />
+        </div>
+
+        <div>
+          <label for="need">What do you need help with?</label>
+          <select id="need">
+            <option>Water and Air</option>
+            <option>Water</option>
+            <option>Air</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="time">Preferred time</label>
+          <select id="time">
+            <option>Morning</option>
+            <option>Afternoon</option>
+            <option>Evening</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="notes">Notes (optional)</label>
+          <textarea id="notes" rows="3" placeholder="Tell us what you noticed at home"></textarea>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" id="scheduleEmailLink" href="mailto:healthywaterandair.business@gmail.com">Send Request via Email</a>
+          <a class="btn secondary" href="tel:18016091551">Call Now</a>
+        </div>
+
+        <div id="scheduleStatus" class="tiny" style="margin-top:8px;"></div>
+
+        <div class="tiny">This is a static form for now.</div>
+      </form>
+    </div>
+
+    <div>
+      <figure class="imgblock" style="margin-bottom:12px;">
+        <img src="assets/img/thumb-generic.png" alt="Home visit preview">
+      </figure>
+      <div class="video">
+        <div class="frame">
+          <div style="text-align:center">
+            <div class="play"></div>
+            <div style="margin-top:14px; font-weight:900; color:var(--primary);">VIDEO PLACEHOLDER</div>
+            <div style="margin-top:6px; color:var(--muted); font-size:13px;">Meet the team (30 sec)</div>
+          </div>
+        </div>
+        <div class="label">
+          <span><strong>Trust video</strong> - 30 seconds</span>
+          <span class="tiny">A short personal clip works best</span>
+        </div>
+      </div>
+
+      <div class="card pad" style="margin-top:18px;">
+        <span class="eyebrow">What to expect</span>
+        <ul class="bullets">
+          <li><span class="dot"></span>Quick check of your water and/or air concerns</li>
+          <li><span class="dot"></span>Clear options explained in plain terms</li>
+          <li><span class="dot"></span>You choose what fits your home</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="assets/blogdata.js"></script>
+<script src="assets/cart.js"></script>
+  <script src="assets/app.js"></script>
+<div id="footer-placeholder"></div>
+
+  <script src="assets/schedule.js" defer></script>
+<script src="assets/includes.js"></script>
+</body>
+</html>

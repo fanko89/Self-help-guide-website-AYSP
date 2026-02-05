@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home Guide - Healthy Water & Air</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/cart.js" defer></script>
+  <script src="assets/catalog.js" defer></script>
+  <script src="assets/includes.js" defer></script>
+  <script src="assets/guide-engine.js" defer></script>
+  <script src="assets/flows/home.js" defer></script>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <section class="hero hero-slim">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker">Home Guide</div>
+        <h1>Your full home plan in one guided flow</h1>
+        <p class="lead">Cover water, air, humidity, and comfort in a single step-by-step guide.</p>
+      </div>
+      <div class="hero-illus-wrap">
+        <img class="hero-illus" src="assets/img/illus-home.png" alt="Whole-home comfort illustration" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-bg">
+    <div class="container">
+      <div id="guide-mount"></div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+window.addEventListener("DOMContentLoaded", function(){
+      const mountEl = document.getElementById('guide-mount');
+      try{
+        const flow = (window.HWA_FLOWS||{}).home;
+        if (!flow || !window.HWA_GUIDE_ENGINE || !mountEl) {
+          if (mountEl) mountEl.innerHTML = '<div class="card pad">Guide failed to load.</div>';
+          return;
+        }
+        window.HWA_GUIDE_ENGINE.mount(mountEl, flow);
+      }catch(err){
+        if (mountEl) mountEl.innerHTML = '<div class="card pad"><div class="tiny">Guide failed to render.</div><div class="callout danger" style="margin-top:10px;">' + (err && (err.stack||err.message) ? String(err.stack||err.message) : 'Unknown error') + '</div></div>';
+      }
+    });
+</script>
+</body>
+</html>

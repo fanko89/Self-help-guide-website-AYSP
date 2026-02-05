@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-label="By-the-book process">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1733"/>
+      <stop offset="1" stop-color="#071225"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#122a4a" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#0b1a30" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#47c7ff"/>
+      <stop offset="1" stop-color="#66e3c4"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="560" rx="26" fill="url(#bg)"/>
+  <text x="70" y="95" font-size="42" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#eaf1ff" font-weight="800">
+    By-the-book means a verified process
+  </text>
+  <text x="70" y="132" font-size="20" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#b8c6dd">
+    Design → Build → Verify. Each step produces proof you can ask for.
+  </text>
+
+  <line x1="140" y1="315" x2="1060" y2="315" stroke="#2a3b57" stroke-width="10" stroke-linecap="round"/>
+  <line x1="140" y1="315" x2="1060" y2="315" stroke="url(#accent)" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+
+  <g filter="url(#shadow)">
+    <rect x="110" y="195" width="300" height="240" rx="22" fill="url(#card)" stroke="#2b3d5b"/>
+    <rect x="450" y="195" width="300" height="240" rx="22" fill="url(#card)" stroke="#2b3d5b"/>
+    <rect x="790" y="195" width="300" height="240" rx="22" fill="url(#card)" stroke="#2b3d5b"/>
+  </g>
+
+  <circle cx="260" cy="315" r="16" fill="#0b1733" stroke="url(#accent)" stroke-width="4"/>
+  <circle cx="600" cy="315" r="16" fill="#0b1733" stroke="url(#accent)" stroke-width="4"/>
+  <circle cx="940" cy="315" r="16" fill="#0b1733" stroke="url(#accent)" stroke-width="4"/>
+
+  <text x="150" y="248" font-size="22" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#eaf1ff" font-weight="800">1) Design</text>
+  <text x="150" y="278" font-size="16" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#c7d4ea">Load calculation + duct design</text>
+  <text x="150" y="314" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Manual J: heat gain/heat loss</text>
+  <text x="150" y="338" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Manual D: duct design</text>
+  <text x="150" y="362" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Room-by-room plan</text>
+
+  <text x="490" y="248" font-size="22" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#eaf1ff" font-weight="800">2) Build</text>
+  <text x="490" y="278" font-size="16" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#c7d4ea">Code-compliant installation</text>
+  <text x="490" y="314" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Electrical + venting + gas</text>
+  <text x="490" y="338" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Condensate + drainage</text>
+  <text x="490" y="362" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Sealing + airflow path</text>
+
+  <text x="830" y="248" font-size="22" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#eaf1ff" font-weight="800">3) Verify</text>
+  <text x="830" y="278" font-size="16" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#c7d4ea">Measured start-up results</text>
+  <text x="830" y="314" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Static pressure + airflow</text>
+  <text x="830" y="338" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Refrigerant + temperature split</text>
+  <text x="830" y="362" font-size="14" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#a9b9d3">Documentation you keep</text>
+
+  <rect x="70" y="460" width="1060" height="10" rx="999" fill="url(#accent)" opacity="0.85"/>
+  <text x="70" y="510" font-size="16" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" fill="#b8c6dd">
+    If a contractor can’t explain these steps clearly, they may be skipping them.
+  </text>
+</svg>
