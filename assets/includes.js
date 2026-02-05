@@ -105,7 +105,6 @@
     loadWithFallback('#header-placeholder', HEADER_URL, HEADER_FALLBACK),
     loadWithFallback('#footer-placeholder', FOOTER_URL, FOOTER_FALLBACK),
   ]).then(()=>{
-<<<<<<< HEAD
     // Page-load animations with stagger
     try{
       const items = document.querySelectorAll('.section-block, .card, .video-block, .video-module, .visual-lg, .edu-block, .media-card, .callout, .choice, .pillar-card, .hero, .hero-illus, .hero-illus-wrap img');
@@ -114,9 +113,6 @@
       });
       document.body.classList.add('page-loaded');
     }catch(_){}
-
-=======
->>>>>>> 0cc71d0db7923aa57f0e856b294560be55804413
     // Load nav script once (header is injected dynamically)
     const ensureScript = (src) => new Promise((resolve) => {
       try {
