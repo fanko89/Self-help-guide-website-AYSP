@@ -217,6 +217,32 @@ hr{border:none; border-top:1px solid var(--stroke); margin:22px 0}
   .h1{font-size:36px}
 }
 
+/* Mobile stacking overrides */
+@media (max-width:900px){
+  .grid-2,
+  .grid-3,
+  .equal-cards,
+  .choice-grid,
+  .pillar-grid,
+  .footer-grid,
+  .video-module,
+  .hero-grid,
+  .split{
+    grid-template-columns: 1fr !important;
+  }
+  .hero-illus-wrap{ justify-content:flex-start; }
+  .grid-2.equal-cards,
+  .grid.grid-2.equal-cards{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width:700px){
+  .grid.grid-2.equal-cards{
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* Buttons */
 .btn{
   appearance:none; border:none; cursor:pointer;
@@ -838,6 +864,28 @@ h1{
   padding: clamp(12px, 1.9vw, 18px);
 }
 .visual-lg img{ width: 100%; height: auto; display: block; border-radius: 18px; }
+.measure-quick img{
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  display: block;
+}
+.visual-lg.measure-quick{
+  border: none;
+  background: transparent;
+  padding: 0;
+  min-height: 0;
+}
+.visual-lg.measure-quick img{
+  border-radius: 0;
+}
+.visual-soft{
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  overflow: visible;
+}
 
 .bullets{
   margin: 10px 0 0;
