@@ -284,14 +284,22 @@
           const chart = b.chart ? `
             <div class="chart">
               <div style="font-weight:900;">${b.chart.title||'Chart'}</div>
-              ${(b.chart.rows||[]).filter(r=>evalShowIf(r.showIf, answers)).map(r=>`
-                <div class="chart-bar">
-                  <div class="label">${r.label||''}</div>
-                  <div class="bar" style="width:${Math.min(100, Math.max(8, Number(r.value)||0))}%;"></div>
-                </div>
-              `).join('')}
+              <div class="chart-plot">
+                <div class="chart-axis-x">${b.chart.xLabel||''}</div>
+                <div class="chart-axis-y">${b.chart.yLabel||''}</div>
+                ${(b.chart.rows||[]).filter(r=>evalShowIf(r.showIf, answers)).map(r=>`
+                  <div class="chart-bar">
+                    <div class="label">${r.label||''}</div>
+                    <div class="bar-wrap">
+                      <div class="bar" style="width:${Math.min(100, Math.max(8, Number(r.value)||0))}%;"></div>
+                      ${b.chart.showValues ? `<div class="value">${r.valueLabel || (r.value!==undefined ? r.value : '')}</div>` : ''}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
               ${b.chart.caption ? `<div class="caption">${b.chart.caption}</div>`:''}
             </div>
+            ${b.chart.after ? `<p class="chart-note">${b.chart.after}</p>`:''}
           ` : '';
           return `<div class="edu-block${highlight}">
             <h4>${b.title||'Evidence-based data'}</h4>
@@ -300,21 +308,29 @@
             ${chart}
           </div>`;
         }
-        if (b.type === 'chart'){
-          const rows = (b.rows||[]).filter(r=>evalShowIf(r.showIf, answers)).map(r=>`
-            <div class="chart-bar">
-              <div class="label">${r.label||''}</div>
-              <div class="bar" style="width:${Math.min(100, Math.max(8, Number(r.value)||0))}%;"></div>
-            </div>
-          `).join('');
-          return `<div class="edu-block${highlight}">
-            <h4>${b.title||'Visual / Chart'}</h4>
-            <p>${b.body||''}</p>
+          if (b.type === 'chart'){
+            const rows = (b.rows||[]).filter(r=>evalShowIf(r.showIf, answers)).map(r=>`
+              <div class="chart-bar">
+                <div class="label">${r.label||''}</div>
+                <div class="bar-wrap">
+                  <div class="bar" style="width:${Math.min(100, Math.max(8, Number(r.value)||0))}%;"></div>
+                  ${b.showValues ? `<div class="value">${r.valueLabel || (r.value!==undefined ? r.value : '')}</div>` : ''}
+                </div>
+              </div>
+            `).join('');
+            return `<div class="edu-block${highlight}">
+              <h4>${b.title||'Visual / Chart'}</h4>
+              <p>${b.body||''}</p>
             <div class="chart">
               <div style="font-weight:900;">${b.chartTitle||'Chart placeholder'}</div>
-              ${rows}
+              <div class="chart-plot">
+                <div class="chart-axis-x">${b.xLabel||''}</div>
+                <div class="chart-axis-y">${b.yLabel||''}</div>
+                ${rows}
+              </div>
               ${b.caption ? `<div class="caption">${b.caption}</div>`:''}
             </div>
+            ${b.after ? `<p class="chart-note">${b.after}</p>`:''}
           </div>`;
         }
         if (b.type === 'evidenceAccordion'){

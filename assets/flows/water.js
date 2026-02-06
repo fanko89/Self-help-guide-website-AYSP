@@ -24,28 +24,67 @@
           },
           {
             type: "chart",
-            title: "Visual / chart placeholder",
-            body: "Simple diagram showing treatment layers and where each problem is addressed.",
-            chartTitle: "Layered treatment overview",
+            title: "Public water system violations (EPA)",
+            body: "EPA’s 2023 report shows how often public systems had violations or missing monitoring data.",
+            chartTitle: "Public water systems with issues (2023)",
+            xLabel: "",
+            yLabel: "",
+            showValues: true,
             rows: [
-              { label: "Sediment", value: 35 },
-              { label: "Carbon", value: 60 },
-              { label: "Softening", value: 75 },
-              { label: "RO (drinking)", value: 85 }
+              { label: "At least one violation", value: 28, valueLabel: "28%" },
+              { label: "Monitoring/reporting violation", value: 20, valueLabel: "20%" },
+              { label: "Health-based violation", value: 4, valueLabel: "4%" }
             ],
-            caption: "What this shows: each layer addresses a different problem."
+            caption: "Study: EPA National Public Water Systems Compliance Report (2023).",
+            after: "This report tracks violations across U.S. public water systems. A meaningful share had at least one violation, and many had monitoring/reporting problems, which means required testing or reporting was late or missing.<br><br>Takeaway: do not assume your water is safe just because it comes from a public system. Check your local report and consider independent testing, especially if you have kids, health concerns, or sensitive plumbing. Source: <a href=\"https://www.epa.gov/compliance/providing-safe-drinking-water-america-national-public-water-systems-compliance-report\" target=\"_blank\" rel=\"noopener\">EPA National PWS Compliance Report (2023)</a>."
           },
           {
-            type: "evidenceAccordion",
-            title: "Evidence & Sources",
-            summary: "Open sources (EPA, CDC, NSF, WQA)",
-            items: [
-              { label: "EPA Drinking Water Standards", url: "https://www.epa.gov/sdwa" },
-              { label: "USGS Water Hardness", url: "https://water.usgs.gov/owq/hardness-alkalinity.html" },
-              { label: "CDC Private Well Guidance", url: "https://www.cdc.gov/healthywater/drinking/private/wells/", showIf: { any: [{ q: "w_source", eq: "well" }] } },
-              { label: "NSF Water Filter Standards", url: "https://www.nsf.org/consumer-resources/water-quality/water-filters-testing-treatment" },
-              { label: "WQA Learn About Water", url: "https://www.wqa.org/learn-about-water" }
-            ]
+            type: "chart",
+            title: "Community water system violations (EPA)",
+            body: "EPA’s enforcement initiative reports violation types for community water systems (FY2022).",
+            chartTitle: "Community water systems with violations",
+            xLabel: "",
+            yLabel: "",
+            showValues: true,
+            rows: [
+              { label: "Any violation", value: 43.2, valueLabel: "43.2%" },
+              { label: "Monitoring/reporting violation", value: 29.6, valueLabel: "29.6%" },
+              { label: "Health-based violation", value: 7, valueLabel: "7%" }
+            ],
+            caption: "Study: EPA National Enforcement and Compliance Initiative (FY2022).",
+            after: "This chart shows the share of community water systems (CWSs) with any violation and the portions tied to monitoring/reporting or health-based violations. Monitoring/reporting problems reduce the visibility you have into your water quality.<br><br>Takeaway: if your system isn’t testing and reporting on time, you are flying blind. Treat that as a risk signal and verify with your local report or independent testing. Source: <a href=\"https://www.epa.gov/enforcement/national-enforcement-and-compliance-initiative-increasing-compliance-drinking-water\" target=\"_blank\" rel=\"noopener\">EPA NECI: Increasing Compliance with Drinking Water Standards</a>."
+          },
+          {
+            type: "chart",
+            title: "NSF/ANSI standards (NSF)",
+            body: "Number of contaminant reduction claims available in each standard.",
+            chartTitle: "Claims count (approx.)",
+            xLabel: "",
+            yLabel: "",
+            showValues: true,
+            rows: [
+              { label: "NSF/ANSI 53", value: 50, valueLabel: "50+ claims" },
+              { label: "NSF/ANSI 401", value: 15, valueLabel: "up to 15" }
+            ],
+            caption: "Study: NSF overview of standards and the number of contaminant reduction claims per standard.",
+            after: "NSF standards tell you what a filter is actually tested to reduce. A product without the right certification may not address the contaminant you care about.<br><br>Takeaway: marketing claims are not protection. If the certification doesn’t match your risk, you may be drinking what you think you filtered. Source: <a href=\"https://www.nsf.org/knowledge-library/nsf-ansi-42-53-and-401-filtration-systems-standards\" target=\"_blank\" rel=\"noopener\">NSF standards overview (42/53/401)</a>."
+          },
+          {
+            type: "chart",
+            title: "Hardness ranges (USGS)",
+            body: "USGS categories in mg/L as CaCO3. Bars reflect the upper bound of each range.",
+            chartTitle: "Hardness scale (mg/L upper bounds)",
+            xLabel: "",
+            yLabel: "",
+            showValues: true,
+            rows: [
+              { label: "Soft: 0–60 mg/L", value: 33, valueLabel: "60 mg/L" },
+              { label: "Moderately hard: 61–120 mg/L", value: 67, valueLabel: "120 mg/L" },
+              { label: "Hard: 121–180 mg/L", value: 100, valueLabel: "180 mg/L" },
+              { label: "Very hard: >180 mg/L", value: 100, valueLabel: ">180 mg/L" }
+            ],
+            caption: "Study: USGS hardness classification.",
+            after: "Hardness varies widely by location, so there is no single national “average.” Many areas fall into hard or very hard ranges, which can drive scale, spotting, and appliance wear.<br><br>Takeaway: if you don’t know your hardness, you are guessing—and that guess can cost you in plumbing damage and wasted energy. Test your water and treat if you fall into hard or very hard. Source: <a href=\"https://www.usgs.gov/faqs/do-you-have-information-about-water-hardness-united-states\" target=\"_blank\" rel=\"noopener\">USGS hardness FAQ</a>."
           },
           {
             type: "implications",
