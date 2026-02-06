@@ -709,6 +709,7 @@ body{ font-size: var(--body); line-height: 1.65; }
 }
 .caption{ color: rgba(234,241,255,.65); font-size: 14px; margin-top: 10px; }
 
+
 /* Video placeholders: no "add later" copy, just title + purpose */
 .video-ph{
   border-radius: 22px;
@@ -879,6 +880,9 @@ h1{
 .visual-lg.measure-quick img{
   border-radius: 0;
 }
+.visual-lg.measure-quick .caption{
+  padding: 8px 10px 10px;
+}
 .visual-soft{
   background: transparent;
   border: none;
@@ -886,6 +890,7 @@ h1{
   box-shadow: none;
   overflow: visible;
 }
+
 
 .bullets{
   margin: 10px 0 0;
